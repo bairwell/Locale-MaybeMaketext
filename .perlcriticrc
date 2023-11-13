@@ -1,0 +1,42 @@
+theme = pbp || bugs || certrec || certrule || maintenance || cosmetic || complexity || security || performance || portability || readability
+
+severity=1
+verbose=%m (%p, Severity %s) %f [Ln %l, Col %c]\n
+[TestingAndDebugging::RequireUseStrict]
+severity = 5
+[TestingAndDebugging::RequireUseWarnings]
+severity = 5
+[TestingAndDebugging::ProhibitNoWarnings]
+allow =experimental::signatures,experimental::lexical_subs
+[Modules::ProhibitEvilModules]
+# based off https://metacpan.org/pod/Perl::Critic::Policy::Community::DiscouragedModules
+modules=Class::ISA Pod::Plainer Shell Switch Autoload Getopt::Std AnyEvent Any::Moose Class::DBI CGI Coro Error FindBin File::Slurp HTML::Template IO::Scoket::INET6 IP::World JSON::Any JSON::XS Net::IRC Switch XML::Simple
+[NamingConventions::Capitalization]
+severity=2
+[Subroutines::ProhibitManyArgs]
+skip_object = 1
+max_arguments = 7
+[-RegularExpressions::RequireExtendedFormatting]
+[-RegularExpressions::ProhibitEscapedMetacharacters]
+[-Documentation::RequirePodAtEnd]
+[-Documentation::PodSpelling]
+[-Documentation::RequirePodSections]
+# misinterprets signatures as prototypes
+[-Subroutines::ProhibitSubroutinePrototypes] 
+#[Documentation::RequirePodSections]
+#lib_sections = NAME | SYNOPSIS | METHODS | AUTHOR
+#severity=4
+# cpanel compatibility
+[-CodeLayout::ProhibitParensWithBuiltins]
+[CodeLayout::RequireTidyCode]
+perltidyrc = .perltidyrc
+[-RegularExpressions::RequireLineBoundaryMatching]
+[-RegularExpressions::RequireDotMatchAnything]
+[-Variables::ProhibitPunctuationVars]
+[-ValuesAndExpressions::ProhibitConstantPragma]
+[-Modules::RequireVersionVar]
+# not really needed since perl 5.8 released in 2002
+[-ValuesAndExpressions::ProhibitVersionStrings]
+[InputOutput::RequireCheckedSyscalls]
+functions = :builtins
+exclude_functions = print
